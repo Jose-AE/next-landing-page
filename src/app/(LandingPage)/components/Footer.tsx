@@ -2,11 +2,12 @@ import Image from "next/image";
 
 import Logo from "../../../../public/next.svg";
 import Link from "next/link";
+import { IconType } from "react-icons";
+import { FaInstagram } from "react-icons/fa6";
+import { AiFillInstagram } from "react-icons/ai";
 
-const SocialLinks: { link: string; iconPath: string }[] = [
-  { link: "https://www.instagram.com/", iconPath: "/icons/instagram.svg" },
-  { link: "https://www.instagram.com/", iconPath: "/icons/instagram.svg" },
-  { link: "https://www.instagram.com/", iconPath: "/icons/instagram.svg" },
+const SOCIAL_LINKS: { link: string; icon: IconType }[] = [
+  { link: "https://www.instagram.com/", icon: AiFillInstagram },
 ];
 
 export default function Footer() {
@@ -21,21 +22,16 @@ export default function Footer() {
             virtual network that has unique features and has high security.
           </p>
           <div className="flex w-full mt-2 mb-8 -mx-2">
-            {SocialLinks.map((v, i) => (
+            {SOCIAL_LINKS.map((link, i) => (
               <div
+                key={i}
                 className={
                   (i === 0 ? "ml-0  mr-2" : "mx-2") +
                   " bg-white-500 rounded-full items-center justify-center flex p-2 shadow-md"
                 }
               >
-                <Link key={i} href={v.link} target="_blank">
-                  <Image
-                    src={v.iconPath}
-                    className="h-6 w-6 "
-                    width={0}
-                    height={0}
-                    alt="Logo"
-                  />
+                <Link key={i} href={link.link} target="_blank">
+                  <link.icon className="h-6 w-6 fill-primary " />
                 </Link>
               </div>
             ))}
